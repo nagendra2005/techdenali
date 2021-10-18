@@ -1,2 +1,2 @@
 # techdenali
-welcome my hyb
+welcome my hub
