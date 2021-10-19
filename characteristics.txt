@@ -1,0 +1,119 @@
+package JavaAssg1;
+
+public interface characteristic {
+		
+		void likes();
+		void says();
+		
+}
+		abstract class pet implements characteristic
+		{
+			
+			private String name;
+		    private String food;
+			public pet(String name, String food) {
+				super();
+				this.name = name;
+				this.food = food;
+			}
+			
+		    
+		     public String getName() {
+				return name;
+			}
+
+
+			public void setName(String name) {
+				this.name = name;
+			}
+
+
+			public String getFood() {
+				return food;
+			}
+
+
+			public void setFood(String food) {
+				this.food = food;
+			}
+
+
+			String  display(String name , String food)
+		    {
+		    	 
+				return name + " " +food;
+		    	
+		    }
+}
+		
+		class Dog extends pet
+		{
+
+			String favact;
+			public Dog(String name, String food, String favact) {
+				super(name, food);
+				this.favact=favact;
+			
+			}
+
+			public void likes() {
+
+				System.out.println(getName() +" "+ "likes"+" " + getFood()+ " "+"favorite activity"+" "+favact);
+			}
+
+			
+			public void says() {
+
+				System.out.println(getName()+"  says Bow Bow!");
+				
+			}
+
+			
+		}
+		
+		class Cat extends pet
+		{
+			int age;
+
+			public Cat(String name, String food, int age) {
+				super(name, food);
+				this.age = age;
+			}
+
+			public void likes() {
+
+		System.out.println(getName()+" " + "likes"+ " " + getFood()+" "+ "Age"+" "+age);
+
+				
+			}
+
+			public void says() {
+
+				System.out.println(getName()+"  says Mew Mew!");
+
+				
+			}
+			
+		}
+		
+		class  animalDemo
+		{
+			
+			public static void main(String[] args) {
+				
+				pet[] p =null;
+				p= new pet[5];
+				p[0] = new Dog("Husky","bones", "Hide n Seek");
+				p[0].likes();
+				p[0].says();
+				
+				p[1] = new Cat("Red", "milk", 5);
+				p[1].likes();
+				p[1].says();
+				
+			}
+			
+			
+			
+			
+		}

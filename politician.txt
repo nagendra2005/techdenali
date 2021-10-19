@@ -1,0 +1,124 @@
+package JavaAssg1;
+
+  interface politician {
+	  long SET_LIMIT=50000000;
+	  boolean hasProperty();
+	  long propertyValue();
+}
+
+  interface professional {
+		int LIMIT=10;
+		boolean isQualified();
+		long annualIncome();
+	}
+  
+   abstract class Person{
+		String Name;
+		String Status;
+		String Qualification;
+		
+		 Person()
+		 {
+			 System.out.println("Non-parameterized constructor");
+		 }
+		public Person(String name, String status, String qualification) {
+			super();
+			this.Name = name;
+			this.Status = status;
+			this.Qualification = qualification;
+		}
+		
+		boolean getStatus()
+		{
+
+			return this.Status != null;
+			
+		}
+		
+		void display()
+		{
+			System.out.println("Name : "+ Name);
+			System.out.println("Status : " + Status);
+			System.out.println("Qualification : " + Qualification );
+		}
+		
+	}
+  
+  
+	 
+	class Minister extends Person
+	{
+	  
+	  long AssetValue;
+		String PartyName;
+		public Minister(String name, String status, String qualification, long assetvalue, String partyname) {
+			super(name, status, qualification);
+			this.AssetValue=assetvalue;
+			this.PartyName=partyname;
+		}
+	
+		public boolean hasProperty() {
+			
+			return hasProperty();
+		}
+
+		public long propertyValue() {
+
+			
+			return AssetValue ;
+		}
+		
+	}
+
+	
+	 class Officer extends Person
+	 {
+
+	 	long MonthlyIncome;
+	 	long DepositValue;
+	 	public Officer(String name, String status, String qualification, long monthlyincome,long depositvalue) {
+	 		super(name, status, qualification);
+	 		this.DepositValue=depositvalue;
+	 		this.MonthlyIncome=monthlyincome;
+	 	}
+
+	 	
+	 	public boolean isQualified() {
+
+	 	
+	 		return isQualified();
+	 	}
+
+	 	public long annualIncome() {
+	 		 
+	 		long annualIncome=MonthlyIncome*12;
+	 		
+	 		return annualIncome;
+	 	}
+	 	
+	 	long getDeposit()
+	 	{
+	 		
+	 		return DepositValue;
+	 		
+	 		
+	 	}
+	 	void display() 
+	 	{
+	 		
+	 		System.out.println("MontlyIncome : " + MonthlyIncome);
+	 		System.out.println("DepositValue : "+ DepositValue);
+	 	}
+	 }
+
+	 
+	  class InterfaceDemo {
+
+			public static void main(String[] args) {
+				
+			}
+
+		}
+
+
+
