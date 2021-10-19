@@ -1,2 +1,0 @@
-# techdenali
-welcome my hub
