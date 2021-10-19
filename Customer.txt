@@ -1,0 +1,73 @@
+public class RichCustomer {
+	String cardName;
+	long cardNo;
+	char cardType;
+	double purchaseAmount;
+	double cashBack;
+	
+			Scanner sc = new Scanner(System.in);
+	
+	
+	
+	public RichCustomer(String name, int cnum, char type, double pamt) {
+		// TODO Auto-generated constructor stub
+		this.cardName = name;
+		this.cardNo = cnum;
+		this.cardType = type;
+		this.purchaseAmount = pamt;
+		
+	}
+
+	void compute()
+	{	
+		String str ;
+		System.out.println("Enter the Ornament Type :" );
+		str=sc.next();
+		if(str.equalsIgnoreCase("Silver") )
+		{
+			cashBack=(purchaseAmount*0.02);
+			System.out.println("Cashback on purchase :" +cashBack);
+		}
+		else if( str.equalsIgnoreCase("Gold"))
+		{
+			cashBack=(purchaseAmount*0.05);
+			System.out.println("Cashback on purchase :" +cashBack);
+
+		}
+		else if(str.equalsIgnoreCase("Platinum"))
+		{
+			cashBack=(purchaseAmount*0.05);
+			System.out.println("Cashback on purchase :" +cashBack);
+
+		}
+		
+		else 
+		{
+			System.out.println("--- welcome visit once again ---");
+		}
+	}
+	
+	void display()
+	{
+		System.out.println("Name :"  + cardName);
+		System.out.println("CardNo : "  + cardNo);
+		System.out.println("CardType : "  + cardType);
+		System.out.println("Purchaseamt: "  + purchaseAmount);
+		System.out.println("Cashback : " + cashBack);
+
+	}
+	
+	
+}
+
+public class Purchase {
+
+	public static void main(String[] args) {
+			
+		
+		RichCustomer rc = new RichCustomer("Raja",123456789, 'p', 280000.00);
+		rc.compute();
+		rc.display();
+	}
+
+}

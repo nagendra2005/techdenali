@@ -1,0 +1,102 @@
+public abstract class Container {
+		
+	String ISOcode;
+	int size;
+	
+	abstract void display();
+
+	public Container(String iSOcode, int size) {
+		this.ISOcode  = iSOcode;
+		this.size = size;
+		
+		System.out.println(" ISOCODE :" +ISOcode);
+		System.out.println("Size :"+size);
+	}
+		
+	
+	 			 
+}
+class GeneralContainer extends Container{
+	
+	
+	String contnum;
+
+	public GeneralContainer(String ISOcode, int size,String contnum) {
+		super( ISOcode , size);
+		contnum = contnum;
+	}
+		 void display()
+		 {
+			 
+			 System.out.println("General Container Num :" + contnum);
+		 }
+	
+}
+
+class Reefer extends Container
+	 
+	{
+		
+		String contnum;
+		String coolingunit;
+		
+		public Reefer(String iSOcode, int size, String contnum, String Coolunit) {
+			super(iSOcode, size);
+			contnum=contnum;
+			coolingunit=Coolunit;
+			
+		
+		}
+
+		@Override
+		void display() {
+			System.out.println(" Reefer Container number :"+contnum );
+			System.out.println("coolingunit :" + coolingunit);
+			
+		}
+		
+		
+	}
+	
+class Hazardous extends Container{
+	
+	String contnum;
+	int IMDGCLass;
+	String code;
+			public Hazardous(String iSOcode, int size, String contnum, int iMDGCLass, String code) {
+		super(iSOcode, size);
+		this.contnum = contnum;
+		IMDGCLass = iMDGCLass;
+		this.code = code;
+	}
+			@Override
+			void display() {
+				// TODO Auto-generated method stub
+				
+				System.out.println("Hazardous Container num : " +contnum);
+				System.out.println(" IMDG Class is :" +IMDGCLass);
+				System.out.println("code is : "+ code);
+				
+			}
+	}
+	
+	
+	public class Assess {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		Scanner sc = new Scanner(System.in);
+		Container con = new GeneralContainer("123",40, "XXXGNNNNNN9");
+		con.display();
+		Container con1 = new Reefer("1545",25,"XXXRNNNNNN9","F");
+		con1.display();
+		Container con2 = new Hazardous("1919",96,"XXXHNNNNNN9",56, "Red");
+		
+	}
+
+}
+
+
+	

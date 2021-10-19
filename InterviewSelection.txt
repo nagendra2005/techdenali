@@ -1,0 +1,234 @@
+package JavaAssg1;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public abstract class RecruitmentCandidate {
+	
+	int canId;
+	String canName;
+	enum Qualification
+	{
+		Btech,Mtech,Bsc,MCA,Msc;
+	}
+	abstract void ComputerScore();
+	
+	public boolean mobilenum(String str)
+	{
+		
+		Pattern ptrn = Pattern.compile("(0/91)?[6-9][0-9]{9}");
+		Matcher match = ptrn.matcher(str);
+		
+		return (match.find()&&match.group().equals(str));
+		
+		
+	}
+}
+
+package JavaAssg1;
+
+import java.util.Scanner;
+
+public class Fresher extends RecruitmentCandidate {
+	
+		 Qualification qualification;
+	 	 Scanner sc = new Scanner(System.in);
+	 
+	Fresher(int canId, String canName)
+	{
+		this.canId=super.canId;
+		this.canName=super.canName;
+		System.out.println("CanId :" + canId);
+		System.out.println("canName :"+ canName);
+	}
+	
+	
+	void Graduatedyear()
+	{
+		System.out.println("Enter the graduated year: ");
+		int year = sc.nextInt();
+		if (Integer.valueOf(year) >= 2019)
+		{
+			System.out.println("your eligible for interview");
+			//super.mobilenum(str);
+
+		}
+		else 
+		{
+			System.out.println("you are not eligible");
+		}
+	}
+	
+	
+	void ComputerScore() 
+	{
+		 double score;
+
+		     System.out.println("Enter the qualification:");
+		     String string =sc.next();
+		     System.out.println("enter the CGPA:");
+		     float CGPA=sc.nextFloat();
+			if(CGPA>8.0 && ( qualification.equals(string)))
+			{
+				System.out.println(CGPA);
+				System.out.println(string);
+				score=5.0;
+			}
+			
+			else if(CGPA>6.5 && CGPA<8.0 &&  (qualification.equals(string)))
+			{
+				score=4.0;
+			}
+			else
+			{
+				score=3.0;
+			}
+	}
+	
+	void AOI()
+	{
+		System.out.println("choose your choice");
+		int choice=sc.nextInt();
+		if(choice==1 )
+		{
+			System.out.println("JavaDeveloper");
+		}
+			else if(choice==2)
+			{
+				System.out.println("devops engineer");
+			}
+			else if(choice==3)
+			{
+				System.out.println(".net developer");
+			}
+		
+			else 
+			{
+				System.out.println("you entered the wrong choice");
+			}
+		
+	}
+	
+
+}
+
+package JavaAssg1;
+
+import java.util.Scanner;
+
+public class Experienced extends  RecruitmentCandidate {
+
+	
+		Scanner sc = new Scanner(System.in);
+		 Experienced(int canId, String canName) 
+	 {
+		this.canId=super.canId;
+		this.canName=super.canName;
+		
+		
+		System.out.println("canId :" + canId);
+		System.out.println("canName :"+ canName);
+		
+	}
+		 
+		 void Experience()
+		 {
+			 
+			 System.out.println("enter the years of experience :");
+			 String exp =sc.next();
+			 System.out.println("Experience  :" + exp);
+		 }
+		 
+		 void specializatiion()
+		 {
+			 System.out.println("Enter the specialization :");
+			 String spec =sc.next();
+			 System.out.println("Specialization :" + spec);
+		 }
+	
+	void ComputerScore()
+	{
+		 
+		double score;
+		 System.out.println("enter the no of years experience :");
+		 int experience=sc.nextInt();
+		if (experience > 8)
+		{
+			score = 5.0;
+
+		}
+		else if(experience>6.5 && experience<8)
+		{
+		score = 4.0;
+		}
+		
+		else 
+		{
+		score = 3.0;
+	}
+	}	
+		void Expsal()
+		{
+			System.out.println(" Enter the expected salary :");
+			double sal = sc.nextDouble();
+			System.out.println(" Expected Salary : " + sal);
+			
+		}
+}
+
+
+package JavaAssg1;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Selection {
+
+	public static void main(String[] args) {
+		String Candidate;
+		int ch;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter  your choice :");
+		 Candidate=sc.next();
+		if(Candidate=="Fresher" || Candidate=="Experienced")
+		{
+			System.out.println("Enter the choice  :" );
+			 ch=sc.nextInt();
+			 System.out.println("1.Fresher\n 2.Experienced");
+			
+			switch(ch)
+			{
+			case 1:
+			Fresher f = new Fresher(1001, "raja");
+			/*ArrayList<Fresher> ar = new ArrayList<Fresher>();
+			ar.add(f);*/
+			f.Graduatedyear();
+			f.ComputerScore();
+			f.AOI();
+			break;
+			case 2:
+				Experienced ex =new Experienced(11011, "Roja");
+				ex.Experience();
+				ex.specializatiion();
+				ex.ComputerScore();
+				ex.Expsal();
+				break;
+			case 3:
+				default:
+					System.out.println("All the best");
+			}
+			
+		}
+		else
+		{
+			System.out.println("you have entered the wrong option");
+		}
+		
+		
+		
+	}
+	}
+
+
+
+

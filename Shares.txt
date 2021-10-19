@@ -1,0 +1,83 @@
+package JavaAssg1;
+
+public class Shares {
+			
+		String CName;
+		long NShares;
+		double UPrice;
+		public String getCName() {
+			return CName;
+		}
+		public void setCName(String cName) {
+			CName = cName;
+		}
+		public long getNShares() {
+			return NShares;
+		}
+		public void setNShares(long nShares) {
+			NShares = nShares;
+		}
+		public double getUPrice() {
+			return UPrice;
+		}
+		public void setUPrice(double uPrice) {
+			UPrice = uPrice;
+		}			
+}
+
+import java.util.Scanner;
+
+public class StockExchange extends Shares{
+
+		String PName;
+		double sharesAmt;
+		
+			Shares s = new Shares();
+			Scanner sc = new Scanner(System.in);
+			StockExchange(String pname,double smat,String cname, long nshares,double uprice) {
+			this.PName=pname;
+			this.sharesAmt=smat;
+			this.CName=cname;
+			this.NShares=nshares;
+			this.UPrice=uprice;
+			
+		}
+			void purchaseShares() 
+			{
+		 System.out.println(s.getCName());
+		 System.out.println(s.getNShares());
+		 System.out.println("enter no of shares :");
+		 long shares = sc.nextLong();
+		double sharesamt= shares*UPrice;
+		 System.out.println("Total shares amount :" + sharesamt);
+		 long Sharesleft  = NShares-shares;
+		 System.out.println("SharesLeft : " + Sharesleft);
+	}
+	
+		void sellShares()
+		{
+			System.out.println(s.getCName());
+			System.out.println("enter no of shares :");
+			 long shares = sc.nextLong();
+			double AmountLeft = sharesAmt-(shares*UPrice);
+			System.out.println("AmountLeft to the company :" + AmountLeft);
+			System.out.println("no. of.shares sold : "+ shares);
+
+		}
+}
+
+
+public class SEDemo {
+
+	public static void main(String[] args) {
+		
+		StockExchange se = new StockExchange("rani", 8500000.00, "SS&StockExchange", 5000000, 20.35);
+		se.purchaseShares();
+		se.sellShares();
+		
+	}
+
+}
+
+
+
