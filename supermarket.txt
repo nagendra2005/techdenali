@@ -1,0 +1,410 @@
+package com.jdbc.connection;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Scanner;
+
+import java.sql.*;
+
+class vehicle
+{
+	int vehicle_id;
+	String vehicle_No;
+	String vehicle_type;
+	String vehicle_owner;
+	Scanner sc=new Scanner(System.in);
+	void parkvehicle()
+	{
+		Random rd=new Random();
+		System.out.println("Enter the vehicle Number :");
+		vehicle_No=sc.next();
+		System.out.println("Enter the vehicle type :");
+		vehicle_type=sc.next();
+		System.out.println("Enter the vehicle owner  :");
+		vehicle_owner=sc.next();
+		vehicle_id=rd.nextInt(10);
+		System.out.println("Your Parking ID Is  :"+vehicle_id);
+	//	System.out.println("Only First Five ID's Only Get Chance to Park Near to Entrance  :");
+		if(vehicle_id<=5)
+		{
+			System.out.println(" \t");
+
+			System.out.println("Right, you have got your parking space near the entrance.\n Now , would you like use to carry our shopping..? ");
+		}
+			else
+		{
+			System.out.println("You May Have To Park Further Away");
+		System.out.println(" \t");
+		}
+	}
+}
+
+
+
+
+class customer extends vehicle{
+	int cust_id;
+	int ch,tid;
+	String cust_name;
+	String cust_address;
+	long phone;
+	Scanner sc=new Scanner(System.in);
+	Random rd=new Random();
+	void parkvehicle()
+	{
+		super.parkvehicle();
+		System.out.println(" \t");
+		System.out.println("You Have Succefully Parked The vehicle... ");
+		System.out.println(" \t");
+		System.out.println("WELCOME TO SUPER_MARKET ");
+		System.out.println(" \t");
+		System.out.println("Select Your Carrier Type For Your shopping..");
+		System.out.println(" \t");
+
+		
+		
+	}
+	void menu() {
+		System.out.println("1. A Deep Trolley.");
+		System.out.println("2. A Shallow Trolley");
+		System.out.println("3. A Trolley with a strap-in baby seat.");
+		System.out.println("4. A Trolley for a wheelchair user.");
+		System.out.println("5. A Trolley that holds a basket.");
+		System.out.println("6. A Basket");
+		
+	}
+		void selectCarrier() {
+			System.out.println("choose the following type of trolley...");
+			menu();
+			
+			int k=1;
+			do {
+				tid=sc.nextInt();
+				System.out.println("Your Carrier Id is :"+tid);
+			switch(tid)
+			{
+			case 1:   if((tid>0)&& (tid<=10))
+			{
+				System.out.println("Deep Trolley is Available..you can start your shopping....Have a Happy Shopping");
+				
+			}
+			
+			else
+				if(tid>10)
+				{
+					System.out.println("Unfortunately all the deep trolleys are taken. What would yoou like to use instead ? ");
+					
+					menu();
+					selectCarrier();
+					 
+				}k++;
+			break;
+			
+			
+			case 2:   if((tid>0)&& (tid<=10))
+			{
+				System.out.println("Shallow Trolley is Available..you can start your shopping....Have a Happy Shopping");
+				
+			}
+			
+			else
+				if(tid>10)
+				{
+					System.out.println("Unfortunately all the Shallow trolleys are taken. What would yoou like to use instead ? ");
+					
+					menu();
+					selectCarrier();
+					 
+				}k++;
+			break;
+			
+			case 3:   if((tid>0)&& (tid<=10))
+			{
+				System.out.println(" Trolley with a strap-in baby seat is Available..you can start your shopping....Have a Happy Shopping");
+				
+			}
+			
+			else
+				if(tid>10)
+				{
+					System.out.println("Unfortunately all the strap-in baby seat are taken. What would yoou like to use instead ? ");
+					
+					menu();
+					selectCarrier();
+					 
+				}k++;
+			break;
+			
+			
+			case 4:   if((tid>0)&& (tid<=10))
+			{
+				System.out.println(" Trolley for a wheelchair user  is Available..you can start your shopping....Have a Happy Shopping");
+				
+			}
+			
+			else
+				if(tid>10)
+				{
+					System.out.println("Unfortunately all the Trolley for a wheelchair user are taken. What would yoou like to use instead ? ");
+					
+					menu();
+					selectCarrier();
+					 
+				}k++;
+			break;
+			
+			
+			case 5:   if((tid>0)&& (tid<=10))
+			{
+				System.out.println("A  Trolley that holds a basket   is Available..you can start your shopping....Have a Happy Shopping");
+				
+			}
+			
+			else
+				if(tid>10)
+				{
+					System.out.println("Unfortunately all the A  Trolley that holds a basket are taken. What would yoou like to use instead ? ");
+					
+					menu();
+					selectCarrier();
+					 
+				}k++;
+			break;
+			
+			
+			
+			case 6:   if((tid>0)&& (tid<=10))
+			{
+				System.out.println("A basket is Available..you can start your shopping....Have a Happy Shopping");
+				
+			}
+			
+			else
+				if(tid>10)
+				{
+					System.out.println("Unfortunately all the baskets are taken. What would yoou like to use instead ? ");
+					
+					menu();
+					selectCarrier();
+					 
+				}
+			k++;
+			break;
+			
+			default: System.out.println("select proper carrier id :"); 
+			k=1;
+			}}while(k==1);
+		}
+}
+
+class Item
+
+{
+	Connection con;
+	Statement st;
+	ResultSet rs;
+	char ch,choice='y';
+	int item_id;
+	String item_name;
+	float item_price;
+	float amt;
+	Scanner sc=new Scanner(System.in);
+	ArrayList<String> list=new ArrayList<String>();
+	ArrayList<String> list1=new ArrayList<String>();
+
+	void Items()
+	{
+		
+		try
+		{
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/adhira","root","root");
+		Statement st=con.createStatement();
+		ResultSet rs=st.executeQuery("select * from items");
+		while(rs.next())
+			{
+			System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getFloat(4));
+			}
+		rs=st.executeQuery("select item_name from items");
+		while(rs.next()) {
+			list1.add(rs.getString(1));
+		}
+	 con.close();
+
+	}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+
+	void shoping()
+	{
+		char s=' ';
+		do {
+			System.out.println("Enter the item to search in the list :");
+			item_name=sc.next();
+			System.out.println(" ");
+			itemsearch();
+			System.out.println("want to search another item ?(y/n)");
+			s=sc.next().charAt(0);
+		} while(s=='y');
+	}
+
+	void itemsearch()
+	{
+		
+		boolean flag=false;
+		int s=0;
+		
+		try {
+		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/adhira","root","root");
+		st=con.createStatement();
+		
+		rs=st.executeQuery("select quantity from items where item_name='"+item_name+"'");
+		
+		if(rs.next())
+		{
+			
+				s=rs.getInt("quantity");
+				if(s>0)
+				flag=true;
+				
+		}		
+			
+		if(flag==true)
+		{
+			System.out.println(item_name+" is available");
+			System.out.println("would you like to add to cart ? (y/n)");
+			ch=sc.next().charAt(0);
+			if(ch=='y') {
+				additem();
+				st.executeUpdate("update items set quantity="+(s-1)+" where item_name='"+item_name+"'");
+			}
+		}
+	
+		
+		else 
+			System.out.println(item_name+"is not available");
+		con.close();
+		
+		}catch(Exception e) 
+		{
+			System.out.println(e);
+			}
+		}
+	
+	
+	void additem()
+	{
+		list.add(item_name);
+		
+	}
+	
+	void itemCart()
+	{
+		System.out.println(list);
+		
+	}
+	
+	
+	}
+
+class checkOut extends Item
+{
+	
+	int price,amt=0,cardno;
+	int timeTowait=10;
+	String card_holder_name;
+	String type;
+	Scanner sc=new Scanner(System.in);
+	Connection con;
+	Statement st;
+	ResultSet rs;
+	void billpayment()
+	{
+		try {
+		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/adhira","root","root");
+		st=con.createStatement();
+		
+		super.shoping();
+		System.out.println("you have purchased the following items :");
+		super.itemCart();
+		Iterator it=super.list.iterator();
+		while(it.hasNext())
+		{
+			
+			rs=st.executeQuery("select price from items where item_name='"+it.next()+"'");
+					if (rs.next()) 
+					{
+				
+				amt+=rs.getInt("price");
+				
+			}
+			}
+		System.out.println("Amount : "+amt);
+		System.out.println("would you like to pay through cash or card ? ");
+		type=sc.next();
+		if(type.equals("cash"))
+			System.out.println("your transaction is completed...Thanks for Shopping...Vist Again");
+		else
+		{
+			if(type.equals("card"))
+			{
+				System.out.println("Enter your card details...");
+				System.out.println("Enter the card number :");
+				cardno=sc.nextInt();
+				System.out.println("Enter the card holder name:");
+				card_holder_name=sc.next();
+				System.out.println("wait.....card is verifying");
+				try
+				{
+					for(int i=0;i<timeTowait;i++) 
+					{
+						Thread.sleep(1000);
+						System.out.println(".");
+					}
+				}
+				
+				catch(InterruptedException ie)
+				{
+					Thread.currentThread().interrupt();
+					
+				}
+				
+				System.out.println("your transaction is completed....Thanks for Shopping...visit again");
+				
+				
+			}
+			
+			else
+				System.out.println("No service to do the payment...\n Your transaction cancelled");
+			
+		}
+			
+			
+		
+	}catch(Exception e) {System.out.print(e);}
+		}
+	
+}
+
+public class SuperMarket {
+
+	public static void main(String[] args) {
+		System.out.println("WELCOME TO SUPER-MARKET");
+		System.out.println("Please Enter The Vehicle Details To Get Parking...");
+		customer csk=new customer();
+		checkOut chk=new checkOut();
+		csk.parkvehicle();
+	     
+		csk.selectCarrier();
+		chk.Items();
+		chk.billpayment();
+		
+      
+	}
+}
