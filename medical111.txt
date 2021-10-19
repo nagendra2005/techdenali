@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<string.h>  
+void chatb();
+
+int main()
+{
+    int age;
+    char nam[100],ch[3],gardianname[100];
+    printf("Enter your name : ");
+    scanf("%s",&nam);
+    printf("Enter your age : ");
+    scanf("%d",&age);
+    if(age<18){
+        printf("do you have any gardian with you ? :");
+        scanf("%s",&ch);
+        if(!strcmp(ch,"yes")){
+            printf("Enter gardian name: ");
+            scanf("%s",&gardianname);
+            chatb();
+           
+        }
+        else{
+            printf("Come with your gardian....\n");
+        }
+    }
+    else{
+        chatb();
+    }
+ 
+}
+void chatb()
+{
+    int days,ch;
+    char issue[100];
+    printf("Welcome to Medical ChatBot.\nplease enter your details.\nWHAT IS YOUR HEALTH ISSUE : ");
+    scanf("%s",&issue);
+    printf("HOW LONG YOU ARE SUFFERING WITH IT ? ");
+    scanf("%d",&days);
+    if(days>=5){
+        printf("BETTER VISIT THE DOCTOR..\n");
+    }
+    else{
+        do{
+        printf("WOULD YOU LIKE TO TAKE \n1. SUGGESION \n2. PRECAUSIONS \n3. MEDICINES \n4. EXIT\n");
+        scanf("%d",&ch);
+   
+    switch(ch)
+    {
+        case 1: printf("BETTER TAKE SOME OT FOOD \n\n");
+                break;
+        case 2: printf("DO NOT EAT COOL ITEMS\n\n");
+                break;
+        case 3: printf("YOU CAN USE COLD ACT\n\n");
+                break;
+        case 4:
+                printf("Thank you... Visit again :)");
+                break;
+        default:
+        printf("Thank you .. All the best...!!");
+           
+       
+    }
+    }while(ch<4);
+    }
+}
